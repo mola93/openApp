@@ -1,8 +1,8 @@
 @extends('layouts.app')
 
 @section('content')
-      <div style="display:flex; align-items: center;"> 
-            <h1 style="margin-right:auto;"> All projects </h1>
+      <div class="flex items-center"> 
+            <h1 class="mr-auto mb-3"> All projects </h1>
                 <a href="/projects/create"> Create a new project </a>
        </div>
        <ul> 
