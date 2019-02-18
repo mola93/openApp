@@ -2,6 +2,7 @@
 
 namespace App;
 use App\User;
+use App\Task;
 
 use Illuminate\Database\Eloquent\Model;
 
@@ -18,5 +19,14 @@ class Project extends Model
     public function owner(){
 
         return $this->belongsTo(User::class);
+    }
+
+    public function addTask($body){
+
+        return $this->tasks()->create(compact('body'));
+    }
+
+    public function tasks(){
+        return $this->hasMany(Tasks::class);
     }
 }
