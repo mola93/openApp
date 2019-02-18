@@ -17,6 +17,11 @@ class ProjectsController extends Controller
 
      }
 
+     public function create(){
+
+      return view('projects.create');
+     }
+
      public function store(){
 
         $attributes = request()
@@ -24,7 +29,8 @@ class ProjectsController extends Controller
          'title' => 'required',
          'description'=> 'required'
         ]);
-        Project::create($attributes);
+      
+        auth()->user()->projects()->create($attributes);
         
 
         return redirect('/projects');
