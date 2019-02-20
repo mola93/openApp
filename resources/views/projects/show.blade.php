@@ -14,25 +14,54 @@
 
  <main>
  <h2 class="text-lg text-grey font-normal mb-3">Tasks </h2>
-
          <div class="lg:flex -mx-3"> 
-                
+                 
                  <div class="lg:w-3/4 px-3 mb-6"> 
                  
                     <div class="mb-8"> 
+                       
+
 
                         {{-- tasks--}}
-                        <div class="card mb-3">lorem ipsum for task </div>
-                        <div class="card mb-3">lorem ipsum for task </div>
-                        <div class="card mb-3">lorem ipsum for task </div>
-                        <div class="card">lorem ipsum for task </div>
+                        @foreach ($project->tasks as $task)
+                        <div class="card mb-3">
+                            <form method="POST" action="{{ $task->path() }}">
+                                @method('PATCH')
+                                @csrf
+
+                                <div class="flex">
+                                    <input name="body" value="{{ $task->body }}" class="w-full {{ $task->completed ? 'text-grey-light' : '' }}">
+                                    <input name="completed" type="checkbox" onChange="this.form.submit()" {{ $task->completed ? 'checked' : '' }}>
+                                </div>
+                            </form>
+                        </div>
+                        @endforeach
+                        <div class="card mb-3">
+                           
+                           <form action="{{ $project->path() . '/tasks' }}" method="POST">
+                              @csrf
+                             <input placeholder="Add a new task... " class="w-full" name="body">
+                           </form>
+                        </div>  
+                    
 
                      </div>
                     <div> 
                         <h2 class="text-lg text-grey font-normal mb-3">General Notes </h2>
 
                          {{-- General Notes--}}
-                        <textarea class="card w-full" style="min-height: 200px">lorem ipsum </textarea>
+                       <form method="POST" action="{{ $project->path()}}"> 
+                       @csrf
+                       @method('PATCH')
+                            <textarea 
+                                      name="notes"
+                                      class="card w-full mb-4" 
+                                      style="min-height: 200px" 
+                                      placeholder="write notes down...">
+                                      {{ $project->notes }} 
+                            </textarea>
+                            <button type="submit" class="button"> Save</button>
+                        </form>  
                      </div>
                  </div>
                  
