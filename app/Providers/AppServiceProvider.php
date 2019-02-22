@@ -4,7 +4,7 @@ namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
 use Schema;
-
+use App\Project;
 class AppServiceProvider extends ServiceProvider
 {
     /**
@@ -23,7 +23,9 @@ class AppServiceProvider extends ServiceProvider
      * @return void
      */
     public function boot()
+
     {
+        Project::observe(ProjectObserver::class);
         Schema::defaultStringLength(191); 
         //
     }

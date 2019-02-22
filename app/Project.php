@@ -3,6 +3,7 @@
 namespace App;
 use App\User;
 use App\Task;
+use App\Activity;
 
 use Illuminate\Database\Eloquent\Model;
 
@@ -28,5 +29,10 @@ class Project extends Model
 
     public function tasks(){
         return $this->hasMany(Task::class);
+    }
+
+    public function activity(){
+
+        return $this->hasMany(Activity::class);
     }
 }
