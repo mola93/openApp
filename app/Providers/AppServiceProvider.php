@@ -5,6 +5,7 @@ namespace App\Providers;
 use Illuminate\Support\ServiceProvider;
 use Schema;
 use App\Project;
+use App\Task;
 class AppServiceProvider extends ServiceProvider
 {
     /**
@@ -26,6 +27,7 @@ class AppServiceProvider extends ServiceProvider
 
     {
         Project::observe(ProjectObserver::class);
+        Task::observe(TaskObserver::class);
         Schema::defaultStringLength(191); 
         //
     }
